@@ -13,6 +13,8 @@ gem 'omniauth-github'
 gem "haml"
 gem "twitter-bootstrap-rails"
 
+gem "figaro"
+
 
 # Use SCSS for stylesheets
 gem 'sass-rails', '~> 4.0.3'
