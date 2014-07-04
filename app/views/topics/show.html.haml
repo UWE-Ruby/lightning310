@@ -1,0 +1,33 @@
+- model_class = Topic
+.page-header
+  %h1=t '.title', :default => model_class.model_name.human.titleize
+
+%p
+  %strong= model_class.human_attribute_name(:sudent_id) + ':'
+  %br
+  = @topic.sudent_id
+%p
+  %strong= model_class.human_attribute_name(:title) + ':'
+  %br
+  = @topic.title
+%p
+  %strong= model_class.human_attribute_name(:description) + ':'
+  %br
+  = @topic.description
+%p
+  %strong= model_class.human_attribute_name(:proposed_date) + ':'
+  %br
+  = @topic.proposed_date
+%p
+  %strong= model_class.human_attribute_name(:completed_date) + ':'
+  %br
+  = @topic.completed_date
+%p
+  %strong= model_class.human_attribute_name(:approved) + ':'
+  %br
+  = @topic.approved
+
+.form-actions
+  = link_to t('.back', :default => t("helpers.links.back")), topics_path, :class => 'btn'
+  = link_to t('.edit', :default => t("helpers.links.edit")), edit_topic_path(@topic), :class => 'btn'
+  = link_to t('.destroy', :default => t("helpers.links.destroy")), topic_path(@topic), :method => "delete", :data => { :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')) }, :class => 'btn btn-danger'

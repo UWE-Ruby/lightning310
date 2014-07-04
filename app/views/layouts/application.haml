@@ -37,9 +37,11 @@
           %a.brand{href: "#"} Lightning310
           .container-fluid.nav-collapse
             %ul.nav
-              %li= link_to "Link1", "/path1"
-              %li= link_to "Link2", "/path2"
-              %li= link_to "Link3", "/path3"
+              - if current_user
+                %li= link_to "Sign Out", destroy_user_session_path
+              - else
+                %li= link_to "Sign In with Github", user_omniauth_authorize_path(provider: :github)
+              %li= link_to "Topics", topics_path
           / /.nav-collapse
     .container-fluid
       .row-fluid
@@ -47,13 +49,14 @@
           .well.sidebar-nav
             %ul.nav.nav-list
               %li.nav-header Sidebar
-              %li= link_to "Link1", "/path1"
-              %li= link_to "Link2", "/path2"
-              %li= link_to "Link3", "/path3"
+              %li= link_to "Home", root_path
+              %li= link_to "Topics", topics_path
           / /.well
         / /span
         .span9
           = bootstrap_flash
+          = notice
+          = alert
           = yield
       / /row
       %footer
