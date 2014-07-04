@@ -1,6 +1,6 @@
 - topics.each do |topic|
   %tr
-    %td= topic.student.name
+    %td= get_student_name_for topic
     %td= link_to topic.title, topic_path(topic)
     %td= topic.description
     %td= topic.proposed_date

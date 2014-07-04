@@ -51,6 +51,7 @@ class TopicsController < ApplicationController
         format.html { redirect_to @topic, notice: 'Topic was successfully updated.' }
         format.json { render :show, status: :ok, location: @topic }
       else
+        flash[:notice] = "You can not edit a topic that isn't yours!"
         format.html { render :edit }
         format.json { render json: @topic.errors, status: :unprocessable_entity }
       end

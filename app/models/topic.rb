@@ -5,5 +5,5 @@ class Topic < ActiveRecord::Base
   scope :completed, -> { where.not(completed_date: nil) }
   scope :not_completed, -> { where(completed_date: nil) }
 
-  validates :title, :description, :proposed_date, presence: true
+  validates :student, :title, :description, :proposed_date, presence: true
 end

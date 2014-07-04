@@ -1,7 +1,12 @@
 class User < ActiveRecord::Base
   devise :trackable, :omniauthable, omniauth_providers: [:github]
 
-  has_many :topics, foreign_key: :student_id
+  has_many :topics, foreign_key: :student_id, dependent: :destroy
+
+  def name
+    return "unknown" if read_attribute(:name).nil?
+    super
+  end
 
   def self.from_omniauth(auth)
     where(auth.slice(:provider, :uid)).first_or_create do |user|
