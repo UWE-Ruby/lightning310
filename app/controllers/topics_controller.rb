@@ -5,12 +5,16 @@ class TopicsController < ApplicationController
   # GET /topics
   # GET /topics.json
   def index
-    @topics = Topic.all
+    @approved_topics = Topic.approved.not_completed
+    @pending_topics = Topic.pending_approval.not_completed
+    @completed_topics = Topic.completed
+    @headings = [:student_id, :title, :description, :proposed_date, :completed_date]
   end
 
   # GET /topics/1
   # GET /topics/1.json
   def show
+    @student = @topic.student
   end
 
   # GET /topics/new
@@ -26,6 +30,7 @@ class TopicsController < ApplicationController
   # POST /topics.json
   def create
     @topic = Topic.new(topic_params)
+    @topic.student = current_user
 
     respond_to do |format|
       if @topic.save
@@ -42,7 +47,7 @@ class TopicsController < ApplicationController
   # PATCH/PUT /topics/1.json
   def update
     respond_to do |format|
-      if @topic.update(topic_params)
+      if @topic.student == current_user && @topic.update(topic_params)
         format.html { redirect_to @topic, notice: 'Topic was successfully updated.' }
         format.json { render :show, status: :ok, location: @topic }
       else
@@ -55,10 +60,15 @@ class TopicsController < ApplicationController
   # DELETE /topics/1
   # DELETE /topics/1.json
   def destroy
-    @topic.destroy
     respond_to do |format|
-      format.html { redirect_to topics_url, notice: 'Topic was successfully destroyed.' }
-      format.json { head :no_content }
+      if @topic.student == current_user
+        @topic.destroy
+        format.html { redirect_to topics_url, notice: 'Topic was successfully destroyed.' }
+        format.json { head :no_content }
+      else
+        format.html { redirect_to topics_url, notice: "You can not destroy a topic that isn't yours!" }
+        format.json { render json: "You can not destroy a topic that isn't yours!", status: :unprocessable_entity}
+      end
     end
   end
 
@@ -70,6 +80,6 @@ class TopicsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def topic_params
-      params.require(:topic).permit(:sudent_id, :title, :description, :proposed_date, :completed_date, :approved)
+      params.require(:topic).permit(:title, :description, :proposed_date)
     end
 end

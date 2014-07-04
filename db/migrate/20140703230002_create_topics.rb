@@ -1,7 +1,7 @@
 class CreateTopics < ActiveRecord::Migration
   def change
     create_table :topics do |t|
-      t.integer :sudent_id
+      t.integer :student_id
       t.string :title
       t.text :description
       t.date :proposed_date

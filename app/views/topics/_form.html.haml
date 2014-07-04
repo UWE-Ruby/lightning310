@@ -1,8 +1,7 @@
 = form_for @topic, :html => { :class => 'form-horizontal' } do |f|
-  .control-group
-    = f.label :sudent_id, :class => 'control-label'
-    .controls
-      = f.text_field :sudent_id, :class => 'text_field'
+  - @topic.errors.full_messages.each do |error|
+    %br
+    = error
   .control-group
     = f.label :title, :class => 'control-label'
     .controls
@@ -10,19 +9,11 @@
   .control-group
     = f.label :description, :class => 'control-label'
     .controls
-      = f.text_field :description, :class => 'text_field'
+      = f.text_area :description, :class => 'text_field'
   .control-group
     = f.label :proposed_date, :class => 'control-label'
     .controls
-      = f.text_field :proposed_date, :class => 'text_field'
-  .control-group
-    = f.label :completed_date, :class => 'control-label'
-    .controls
-      = f.text_field :completed_date, :class => 'text_field'
-  .control-group
-    = f.label :approved, :class => 'control-label'
-    .controls
-      = f.text_field :approved, :class => 'text_field'
+      = f.date_field :proposed_date, :class => 'text_field'
   .form-actions
     = f.submit nil, :class => 'btn btn-primary'
     = link_to t('.cancel', :default => t("helpers.links.cancel")), topics_path, :class => 'btn'

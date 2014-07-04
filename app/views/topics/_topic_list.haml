@@ -1,0 +1,11 @@
+- topics.each do |topic|
+  %tr
+    %td= topic.student.name
+    %td= link_to topic.title, topic_path(topic)
+    %td= topic.description
+    %td= topic.proposed_date
+    %td= topic.completed_date
+    %td
+      - if topic.student == current_user
+        = link_to t('.edit', :default => t("helpers.links.edit")), edit_topic_path(topic), :class => 'btn btn-mini'
+        = link_to t('.destroy', :default => t("helpers.links.destroy")), topic_path(topic), :method => :delete, :data => { :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')) }, :class => 'btn btn-mini btn-danger'

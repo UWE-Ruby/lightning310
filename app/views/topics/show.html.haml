@@ -3,9 +3,14 @@
   %h1=t '.title', :default => model_class.model_name.human.titleize
 
 %p
-  %strong= model_class.human_attribute_name(:sudent_id) + ':'
+  %strong= model_class.human_attribute_name(:student_id) + ':'
   %br
-  = @topic.sudent_id
+  = image_tag @student.image, height: 100, width: 100
+  = @student.name
+  %br
+  %strong
+    Github:
+    = link_to @student.github_name, "http://github.com/#{@student.github_name}", target: :new
 %p
   %strong= model_class.human_attribute_name(:title) + ':'
   %br

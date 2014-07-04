@@ -14,7 +14,7 @@
 ActiveRecord::Schema.define(version: 20140703231158) do
 
   create_table "topics", force: true do |t|
-    t.integer  "sudent_id"
+    t.integer  "student_id"
     t.string   "title"
     t.text     "description"
     t.date     "proposed_date"
