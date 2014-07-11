@@ -17,6 +17,8 @@ end
 #added gems
 gem "devise"
 gem 'omniauth-github'
+gem "cancancan"
+gem "rolify"
 
 gem "haml-rails"
 gem "twitter-bootstrap-rails"
