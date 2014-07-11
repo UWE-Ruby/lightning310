@@ -1,16 +1,14 @@
-- model_class = Topic
 .page-header
-  %h1=t '.title', :default => model_class.model_name.human.pluralize.titleize
+  %h1=t '.title', default: "Topics"
 %table.table.table-striped
   %thead
     %tr
       - @headings.each do |h|
-        %th= model_class.human_attribute_name(h)
-      %th=t '.actions', :default => t("helpers.actions")
+        %th= h
   %tbody
-    - ["Approved Topics", "Pending Topics", "Completed Topics"].each do |list|
+    - @topic_sections.each do |section|
       %tr
-        %th{colspan: @headings.size+1}= list
-      = render "topic_list", topics: eval("@#{list.downcase.gsub(' ', '_')}")
+        %th{colspan: @headings.size}= section.to_s.humanize.titleize
+      = render "topic_list", topics: eval("@#{section}"), section: section
 
 = link_to t('.new', :default => t("helpers.links.new")), new_topic_path, :class => 'btn btn-primary'

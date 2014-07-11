@@ -8,7 +8,18 @@ class TopicsController < ApplicationController
     @approved_topics = Topic.approved.not_completed
     @pending_topics = Topic.pending_approval.not_completed
     @completed_topics = Topic.completed
-    @headings = [:student_id, :title, :description, :proposed_date, :completed_date]
+    @topic_sections = [:approved_topics,
+                       :pending_topics,
+                       :completed_topics]
+    @headings = [
+                  :student_id,
+                  :title,
+                  :description,
+                  :proposed_date,
+                  :completed_date
+    ].map{|h| Topic.human_attribute_name(h)}
+    @headings.push I18n.t('.actions', default: I18n.t("helpers.actions"))
+    @headings.push "Admin Actions" if current_user.is_admin?
   end
 
   # GET /topics/1
@@ -61,6 +72,16 @@ class TopicsController < ApplicationController
         format.json { head :no_content }
       end
     end
+  end
+
+  def approve
+    return redirect_to topics_url if @topic.approve!
+    redirect_to topics_url, notice: 'Problem approving topic'
+  end
+
+  def complete
+    return redirect_to topics_url if @topic.complete!
+    redirect_to topics_url, notice: 'Problem completing topic'
   end
 
   private

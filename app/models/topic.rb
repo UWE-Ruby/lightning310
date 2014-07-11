@@ -6,4 +6,14 @@ class Topic < ActiveRecord::Base
   scope :not_completed, -> { where(completed_date: nil) }
 
   validates :student, :title, :description, :proposed_date, presence: true
+
+  def approve!
+    self.approved = true
+    self.save
+  end
+
+  def complete!
+    self.completed_date = Date.today
+    self.save
+  end
 end
