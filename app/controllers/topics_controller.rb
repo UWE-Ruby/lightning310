@@ -1,6 +1,6 @@
 class TopicsController < ApplicationController
   before_action :authenticate_user!
-  before_action :set_topic, only: [:show, :edit, :update, :destroy]
+  load_and_authorize_resource
 
   # GET /topics
   # GET /topics.json
@@ -19,7 +19,6 @@ class TopicsController < ApplicationController
 
   # GET /topics/new
   def new
-    @topic = Topic.new
   end
 
   # GET /topics/1/edit
@@ -29,7 +28,6 @@ class TopicsController < ApplicationController
   # POST /topics
   # POST /topics.json
   def create
-    @topic = Topic.new(topic_params)
     @topic.student = current_user
 
     respond_to do |format|
@@ -47,13 +45,9 @@ class TopicsController < ApplicationController
   # PATCH/PUT /topics/1.json
   def update
     respond_to do |format|
-      if @topic.student == current_user && @topic.update(topic_params)
+      if @topic.update(topic_params)
         format.html { redirect_to @topic, notice: 'Topic was successfully updated.' }
         format.json { render :show, status: :ok, location: @topic }
-      else
-        flash[:notice] = "You can not edit a topic that isn't yours!"
-        format.html { render :edit }
-        format.json { render json: @topic.errors, status: :unprocessable_entity }
       end
     end
   end
@@ -62,22 +56,14 @@ class TopicsController < ApplicationController
   # DELETE /topics/1.json
   def destroy
     respond_to do |format|
-      if @topic.student == current_user
-        @topic.destroy
+      if @topic.destroy
         format.html { redirect_to topics_url, notice: 'Topic was successfully destroyed.' }
         format.json { head :no_content }
-      else
-        format.html { redirect_to topics_url, notice: "You can not destroy a topic that isn't yours!" }
-        format.json { render json: "You can not destroy a topic that isn't yours!", status: :unprocessable_entity}
       end
     end
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_topic
-      @topic = Topic.find(params[:id])
-    end
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def topic_params
