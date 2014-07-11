@@ -1,4 +1,5 @@
 class User < ActiveRecord::Base
+  rolify
   devise :trackable, :omniauthable, omniauth_providers: [:github]
 
   has_many :topics, foreign_key: :student_id, dependent: :destroy
