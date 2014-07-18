@@ -20,4 +20,6 @@
 # available at http://guides.rubyonrails.org/i18n.html.
 
 en:
-  hello: "Hello world"
+  hello: "Welcome!"
+  welcome:
+    note: "To sign up for a lighting talk, please login with Github and enter your topic!"

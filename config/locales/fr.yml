@@ -1,0 +1,6 @@
+fr:
+  hello: "Bonjour!"
+  welcome:
+    note: "Oui!"
+  sign_in:
+    github: "Sign In with Github"
