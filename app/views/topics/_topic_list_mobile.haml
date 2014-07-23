@@ -1,0 +1,7 @@
+- topics.each do |topic|
+  %a{href: topic_path(topic)}
+    %li.topcoat-list__item
+      %span= topic.title
+      ( by 
+      %span= get_student_name_for(topic)
+      )
