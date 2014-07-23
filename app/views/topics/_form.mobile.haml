@@ -1,0 +1,19 @@
+= form_for @topic, :html => { :class => 'form-horizontal' } do |f|
+  - @topic.errors.full_messages.each do |error|
+    %br
+    = error
+  .control-group
+    = f.label :title, :class => 'control-label'
+    .controls
+      = f.text_field :title, :class => 'topcoat-text-input'
+  .control-group
+    = f.label :description, :class => 'control-label'
+    .controls
+      = f.text_area :description, :class => 'topcoat-textarea'
+  .control-group
+    = f.label :proposed_date, :class => 'control-label'
+    .controls
+      = f.date_field :proposed_date, :class => 'topcoat-text-input'
+  .form-actions
+    = f.submit nil, :class => 'topcoat-button'
+    = link_to t('.cancel', :default => t("helpers.links.cancel")), topics_path, :class => 'topcoat-button'
