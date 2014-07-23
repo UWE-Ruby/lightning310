@@ -1,0 +1,4 @@
+%h1= "#{t 'hello'} mobile"
+%p= t 'welcome.note'
+%p= link_to t('sign_in.github', default: "Sign In With Github"), user_omniauth_authorize_path(provider: :github)
+
