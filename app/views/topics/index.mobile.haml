@@ -1,0 +1,18 @@
+- model_class = Topic
+
+.topcoat-list
+
+  %h3.topcoat-list__header Approved Topics
+  %ul.topcoat-list__container
+    = render 'topic_list_mobile', topics: @approved_topics
+
+  %h3.topcoat-list__header Pending Topics
+  %ul.topcoat-list__container
+    = render 'topic_list_mobile', topics: @pending_topics
+
+  %h3.topcoat-list__header Completed Topics
+  %ul.topcoat-list__container
+    = render 'topic_list_mobile', topics: @completed_topics
+
+= link_to t('.new', :default => t("helpers.links.new")), new_topic_path, :class => 'topcoat-button'
+

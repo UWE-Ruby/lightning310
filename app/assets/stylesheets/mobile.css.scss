@@ -1,0 +1,58 @@
+/* http://outof.me/navigation-drawer-pattern-with-topcoat-css-library/ */
+$trans-time: 0.3s;
+
+#slide-out {
+    display:block;
+    position:absolute;
+    top:0;
+    left:0;
+    width:0;
+    height:100%;
+    webkit-transition: all $trans-time ease;
+    transition: all $trans-time ease;
+}
+
+#slide-out:target {
+  /* width: 320px; */
+  width: 90%;
+  transition: all $trans-time ease;
+}
+
+.open-menu {
+  display: block;
+}
+
+.close-menu {
+  display: none;
+}
+
+.page-wrap {
+  position: absolute;
+  left: 0;
+  width: 100%;
+  webkit-transition: all $trans-time ease;
+  transition: all $trans-time ease;
+}
+/*
+.page-wrap {
+  float: right;
+  width: 100%;
+}
+*/
+
+#slide-out:target + .page-wrap {
+  /* width: 20%; */
+  left: 90%;
+}
+
+#slide-out:target + .page-wrap .close-menu {
+    display: block;
+  }
+#slide-out:target + .page-wrap .open-menu {
+    display: none;
+}
+
+a {
+  color: #288edf;
+  text-decoration: none;
+}

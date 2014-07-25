@@ -29,6 +29,8 @@ gem "rolify"
 
 gem "haml-rails"
 gem "twitter-bootstrap-rails"
+gem "mobile-fu"
+gem "topcoat-rails"
 
 gem "figaro"
 

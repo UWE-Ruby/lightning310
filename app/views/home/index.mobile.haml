@@ -1,0 +1,13 @@
+%h1.center= t 'hello'
+.center
+  - if current_user
+    %a{href: topics_path}
+      %button.topcoat-button
+        Topics
+    %br
+    %button.topcoat-button= link_to "Sign Out", destroy_user_session_path
+  - else
+    %p.center
+      To sign up for a lighting talk, please login with Github and enter your topic!
+    %button.topcoat-button= link_to "Sign In with Github", user_omniauth_authorize_path(provider: :github)
+
