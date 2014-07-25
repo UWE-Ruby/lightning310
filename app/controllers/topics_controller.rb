@@ -86,8 +86,8 @@ class TopicsController < ApplicationController
 
   private
 
-    # Never trust parameters from the scary internet, only allow the white list through.
-    def topic_params
-      params.require(:topic).permit(:title, :description, :proposed_date)
-    end
+  # Never trust parameters from the scary internet, only allow the white list through.
+  def topic_params
+    params.require(:topic).permit(:title, :description, :proposed_date)
+  end
 end

@@ -6,4 +6,8 @@ class HomeControllerTest < ActionController::TestCase
     assert_response :success
   end
 
+  test "this should be a model tests" do
+    assert_equal(User.new.name == "unknown")
+  end
+
 end

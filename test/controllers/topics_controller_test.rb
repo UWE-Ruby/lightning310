@@ -3,6 +3,9 @@ require 'test_helper'
 class TopicsControllerTest < ActionController::TestCase
   setup do
     @topic = topics(:one)
+    user = User.create
+    user.add_role :admin
+    sign_in user
   end
 
   test "should get index" do
@@ -18,7 +21,7 @@ class TopicsControllerTest < ActionController::TestCase
 
   test "should create topic" do
     assert_difference('Topic.count') do
-      post :create, topic: { approved: @topic.approved, completed_date: @topic.completed_date, description: @topic.description, proposed_date: @topic.proposed_date, sudent_id: @topic.sudent_id, title: @topic.title }
+      post :create, topic: { approved: @topic.approved, completed_date: @topic.completed_date, description: @topic.description, proposed_date: @topic.proposed_date, student_id: @topic.student_id, title: @topic.title }
     end
 
     assert_redirected_to topic_path(assigns(:topic))
@@ -35,7 +38,7 @@ class TopicsControllerTest < ActionController::TestCase
   end
 
   test "should update topic" do
-    patch :update, id: @topic, topic: { approved: @topic.approved, completed_date: @topic.completed_date, description: @topic.description, proposed_date: @topic.proposed_date, sudent_id: @topic.sudent_id, title: @topic.title }
+    patch :update, id: @topic, topic: { approved: @topic.approved, completed_date: @topic.completed_date, description: @topic.description, proposed_date: @topic.proposed_date, student_id: @topic.student_id, title: @topic.title }
     assert_redirected_to topic_path(assigns(:topic))
   end
 

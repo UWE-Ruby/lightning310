@@ -10,6 +10,10 @@ group :development, :test do
   gem 'better_errors'
   gem 'binding_of_caller'
   gem 'thin'
+  gem 'rubocop', require: false
+  gem 'haml-lint', require: false
+  gem 'simplecov', require: false
+  gem "codeclimate-test-reporter", require: false
 end
 
 group :production do

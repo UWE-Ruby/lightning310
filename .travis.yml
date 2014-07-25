@@ -1,0 +1,8 @@
+language: ruby
+rvm:
+  - 2.1.0
+cache: bundler
+bundler_args: --without production development
+addons:
+  code_climate:
+    repo_token: f30ddcf5e331eebf09f5a2a7e6c04d75628598791a4ecf9af4541d8fe1fb24d0

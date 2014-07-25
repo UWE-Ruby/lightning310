@@ -1,7 +1,7 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
 one:
-  sudent_id: 1
+  student_id: 1
   title: MyString
   description: MyText
   proposed_date: 2014-07-03
@@ -9,7 +9,7 @@ one:
   approved: false
 
 two:
-  sudent_id: 1
+  student_id: 1
   title: MyString
   description: MyText
   proposed_date: 2014-07-03
