@@ -30,6 +30,15 @@
     %li.topcoat-list__item
       %span Approved:
       %span= @topic.approved
+      - if current_user.is_admin?
+        = link_to "Approve", approve_topic_path(@topic), class: 'topcoat-button' if !@topic.approved
+        = link_to "Complete", complete_topic_path(@topic), class: 'topcoat-button' if @topic.approved
+    %li.topcoat-list__item
+    - if can? :modify, @topic
+      = link_to t('.edit', :default => t("helpers.links.edit")), edit_topic_path(@topic), :class => 'topcoat-button'
+      = link_to t('.destroy', :default => t("helpers.links.destroy")), topic_path(@topic), :method => :delete, :data => { :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')) }, :class => 'topcoat-button'
+
+
 -# .form-actions
   -# = link_to t('.back', :default => t("helpers.links.back")), topics_path, :class => 'btn'
   -# = link_to t('.edit', :default => t("helpers.links.edit")), edit_topic_path(@topic), :class => 'btn'
