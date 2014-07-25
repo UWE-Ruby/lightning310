@@ -32,7 +32,7 @@
       %span= @topic.approved
       - if current_user.is_admin?
         = link_to "Approve", approve_topic_path(@topic), class: 'topcoat-button' if !@topic.approved
-        = link_to "Complete", complete_topic_path(@topic), class: 'topcoat-button' if @topic.approved
+        = link_to "Complete", complete_topic_path(@topic), class: 'topcoat-button' if (@topic.approved && !@topic.completed_date)
     %li.topcoat-list__item
     - if can? :modify, @topic
       = link_to t('.edit', :default => t("helpers.links.edit")), edit_topic_path(@topic), :class => 'topcoat-button'
