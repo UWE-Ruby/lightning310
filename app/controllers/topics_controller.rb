@@ -60,6 +60,7 @@ class TopicsController < ApplicationController
     respond_to do |format|
       if @topic.update(topic_params)
         format.html { redirect_to @topic, notice: 'Topic was successfully updated.' }
+        format.mobile { redirect_to @topic, notice: 'Topic was successfully updated.' }
         format.json { render :show, status: :ok, location: @topic }
       end
     end
@@ -71,6 +72,7 @@ class TopicsController < ApplicationController
     respond_to do |format|
       if @topic.destroy
         format.html { redirect_to topics_url, notice: 'Topic was successfully destroyed.' }
+        format.mobile{ redirect_to topics_url, notice: 'Topic was successfully destroyed.' }
         format.json { head :no_content }
       end
     end
