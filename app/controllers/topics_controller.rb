@@ -17,7 +17,7 @@ class TopicsController < ApplicationController
                   :description,
                   :proposed_date,
                   :completed_date
-    ].inject({}){|hash, column| hash[column] = Topic.human_attribute_name(column); hash}
+    ].inject({}){|hash, column| hash[column] = get_header_name_for(column); hash}
     @headings[:no_link1] = I18n.t('.actions', default: I18n.t("helpers.actions"))
     @headings[:no_link2] = "Admin Actions" if current_user.is_admin?
   end
@@ -92,6 +92,24 @@ class TopicsController < ApplicationController
   end
 
   def sort list
-    list.unscope(:order).order(params[:sort_column])
+    if sort_order_down?
+      list.unscope(:order).order(params[:sort_column])
+    else
+      list.unscope(:order).order(params[:sort_column]).reverse_order
+    end
+  end
+
+  def get_header_name_for column
+    name = Topic.human_attribute_name(column)
+    name += "*#{get_new_sort_order}" if column.to_s == params[:sort_column]
+    name
+  end
+
+  def get_new_sort_order
+    sort_order_down? ? "up" : "down"
+  end
+
+  def sort_order_down?
+    params[:sort_order].to_s == "down"
   end
 end
