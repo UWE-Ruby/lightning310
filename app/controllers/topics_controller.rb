@@ -5,9 +5,9 @@ class TopicsController < ApplicationController
   # GET /topics
   # GET /topics.json
   def index
-    @approved_topics = Topic.approved.not_completed
-    @pending_topics = Topic.pending_approval.not_completed
-    @completed_topics = Topic.completed
+    @approved_topics = sort Topic.approved.not_completed
+    @pending_topics = sort Topic.pending_approval.not_completed
+    @completed_topics = sort Topic.completed
     @topic_sections = [:approved_topics,
                        :pending_topics,
                        :completed_topics]
@@ -17,9 +17,9 @@ class TopicsController < ApplicationController
                   :description,
                   :proposed_date,
                   :completed_date
-    ].map{|h| Topic.human_attribute_name(h)}
-    @headings.push I18n.t('.actions', default: I18n.t("helpers.actions"))
-    @headings.push "Admin Actions" if current_user.is_admin?
+    ].inject({}){|hash, column| hash[column] = Topic.human_attribute_name(column); hash}
+    @headings[:no_link1] = I18n.t('.actions', default: I18n.t("helpers.actions"))
+    @headings[:no_link2] = "Admin Actions" if current_user.is_admin?
   end
 
   # GET /topics/1
@@ -89,5 +89,9 @@ class TopicsController < ApplicationController
   # Never trust parameters from the scary internet, only allow the white list through.
   def topic_params
     params.require(:topic).permit(:title, :description, :proposed_date)
+  end
+
+  def sort list
+    list.unscope(:order).order(params[:sort_column])
   end
 end

@@ -3,8 +3,8 @@
 %table.table.table-striped
   %thead
     %tr
-      - @headings.each do |h|
-        %th= h
+      - @headings.each do |column_name, header_name|
+        %th= sort_link header_text: header_name, sort_column: column_name
   %tbody
     - @topic_sections.each do |section|
       %tr
