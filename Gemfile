@@ -29,6 +29,7 @@ gem "rolify"
 
 gem "haml-rails"
 gem "twitter-bootstrap-rails"
+gem 'angularjs-rails'
 
 gem "figaro"
 

@@ -1,0 +1,1 @@
+@app = angular.module('lightning310', ["ngRoute", "ngResource"])

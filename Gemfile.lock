@@ -27,6 +27,7 @@ GEM
       minitest (~> 5.1)
       thread_safe (~> 0.1)
       tzinfo (~> 1.1)
+    angularjs-rails (1.2.21)
     arel (5.0.1.20140414130214)
     ast (2.0.0)
     bcrypt (3.1.7)
@@ -216,6 +217,7 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
+  angularjs-rails
   better_errors
   binding_of_caller
   cancancan

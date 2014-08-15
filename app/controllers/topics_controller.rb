@@ -20,6 +20,11 @@ class TopicsController < ApplicationController
     ].inject({}){|hash, column| hash[column] = get_header_name_for(column); hash}
     @headings[:no_link1] = I18n.t('.actions', default: I18n.t("helpers.actions"))
     @headings[:no_link2] = "Admin Actions" if current_user.is_admin?
+
+    respond_to do |format|
+      format.html
+      format.json {render json: Topic.all.to_json(only: [:title, :description], methods: [:student_name])}
+    end
   end
 
   # GET /topics/1

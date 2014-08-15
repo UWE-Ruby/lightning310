@@ -18,4 +18,8 @@ class Topic < ActiveRecord::Base
     self.completed_date = Date.today
     self.save
   end
+
+  def student_name
+    student.name if student
+  end
 end

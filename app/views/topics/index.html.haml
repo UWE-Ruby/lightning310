@@ -12,3 +12,28 @@
       = render "topic_list", topics: eval("@#{section}"), section: section
 
 = link_to t('.new', :default => t("helpers.links.new")), new_topic_path, :class => 'btn btn-primary'
+
+
+.topics{"ng-controller" => "TopicController"}
+  .list
+    %ul{ 'ng-repeat'=> "topic in topics"}
+      %li
+        {{topic.title}}
+
+  %table.table.table-striped
+    %thead
+      %tr
+        %th
+          %a{href: "", "ng-click"=>"attr = 'student_name'; reverse=!reverse"} Student Name
+        %th
+          %a{href: "", "ng-click"=>"attr = 'title'; reverse=!reverse"} Title
+        %th
+          %a{href: "", "ng-click"=>"attr = 'description'; reverse=!reverse"} Description
+      %tbody
+        %tr{"ng-repeat"=>"topic in topics | orderBy:attr:reverse"}
+          %td {{topic.student_name}}
+          %td {{topic.title}}
+          %td {{topic.description}}
+
+
+
