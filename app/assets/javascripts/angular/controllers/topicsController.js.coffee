@@ -6,4 +6,8 @@
 
   $scope.topics = []
   init()
+
+  $scope.submitTopic = ->
+    alert $scope.topic
+    Topic.create(topic: $scope.topic)
 ]

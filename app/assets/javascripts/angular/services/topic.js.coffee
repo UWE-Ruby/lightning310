@@ -2,7 +2,8 @@
     $resource( "/topics/:id.json",
       {id: @id}
       {
-       index: { method: 'get', isArray: true }
+       index: { method: 'get', isArray: true },
+       create: { method: 'post'}
       }
     )
 ]

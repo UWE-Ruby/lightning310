@@ -1,0 +1,9 @@
+- @hello = "hi there"
+%span{"ng-init"=>"hello='#{@hello}'"}
+  {{hello}}
+
+%form{"ng-submit"=>"submitTopic()", "ng-controller"=> "TopicsController"}
+  %input{"ng-model"=>"topic.title"}
+  %input{"ng-model"=>"topic.description"}
+  %input{"ng-model"=>"topic.proposed_date"}
+  %input.btn-primary#submit{type: "submit", value: "Create Topic"}
