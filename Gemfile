@@ -33,6 +33,7 @@ gem 'angularjs-rails'
 
 gem "figaro"
 gem "newrelic_rpm"
+gem 'honeybadger'
 
 group :development do
   gem 'pry-rails'
