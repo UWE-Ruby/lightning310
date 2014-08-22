@@ -32,6 +32,7 @@ gem "twitter-bootstrap-rails"
 gem 'angularjs-rails'
 
 gem "figaro"
+gem "newrelic_rpm"
 
 group :development do
   gem 'pry-rails'
